@@ -1,18 +1,31 @@
-const { createSuplement } = require('../controllers/suplementControllers');
+
+const {getSuplements, getSuplementByName, getSuplementById, createSuplement } = require('../controllers/suplementControllers');
 
 //por query
-const getSuplementsHandler = (req, res) => {
+const getSuplementsHandler = async (req, res) => {
     const { name } = req.query;
-    if (name) {
-        res.status(200).json({ message: `Get Suplements ${name}` });
+    try {    
+        if (name) {
+            const response = await getSuplementByName(name);
+            res.status(200).json(response);
+        } else{
+            const response = await getSuplements();
+            res.status(200).json(response);
+        }
+    } catch (error) {
+        res.status(400).json({ error: error.message });
     }
-    res.status(200).json({ message: "Get Suplements" });
 }
 
 //por params
-const getSuplementByIdHandler = (req, res) => {
+const getSuplementByIdHandler = async (req, res) => {
     const { id } = req.params;
-    res.status(200).json({ message: `Get Suplement ${id}` });
+    try {
+        const response = await getSuplementById(id);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 }
 
 //por body
