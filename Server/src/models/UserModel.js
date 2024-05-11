@@ -12,6 +12,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        sex: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: false
@@ -21,7 +25,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         cellphone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT,
             allowNull: false
         },
         address: {
